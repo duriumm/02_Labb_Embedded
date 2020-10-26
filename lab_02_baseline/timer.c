@@ -9,8 +9,9 @@ void timer0_init(){
   To init CTC mode for TCCR0A we put (WGM01 = 1)*/
   TCCR0A |= (1 << WGM01);
    
-  /* Generate an interrupt each time the counter (TCNT0) reaches 156 */
-  OCR0A = 156; 
+  /* Generate an interrupt each time the counter (TCNT0) reaches 156 
+  Output Compare Value calculation is: (16 000 000 / (1024 x 100)) – 1 = 155,25 Which is rounded to 155.*/
+  OCR0A = 155; 
 
   /* ENABLE Interrupt for ISR. for this deluppgift we will NOT use ISR*/
   //TIMSK0 = (1 << OCIE0A);
