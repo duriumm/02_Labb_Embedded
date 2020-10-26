@@ -16,6 +16,10 @@ void deactivate_led(int indexInRegistry){   // Turn the led OFF
     PORTB &= ~(1 << indexInRegistry);   // We set the second bit (PB1) in PORTB registry to ~1(inverted 1 that becomes 0) IF the second bit(PB1) ALREADY is 1
 }
 
+void init_pwm_6(){                          // Initialize pwm on arduino pin 6 
+    DDRD |= (1 << PD6);
+}
+
 /*
 void change_led_ON_or_OFF_based_on_state(STATES currentEnumstate){ // Turns led OFF if enum state is ON_STATE
                                                                    // Turns led OFF if enum state is OFF_STATE

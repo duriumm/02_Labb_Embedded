@@ -2,6 +2,7 @@
 #include "timer.h"
 
 void timer0_init(){
+
  
   /*TCCR0A is the Timer/Counter Control Register A which we use to initialize CTC mode
   TCCR0A uses (WGM01 = bit 1) and (WGM00 = bit 0)
@@ -24,3 +25,19 @@ void timer0_init(){
   To init prescaler 1024 for TCCR0B we put (CS02 = 1) and (CS00 = 1)*/   
   TCCR0B |= (1 << CS02) | (1 << CS00);
 }
+
+void pwm_timer0_init(){
+
+    TCCR0A |= (1 << WGM01) | (1 << WGM00); // Initialize fast pwm mode
+
+    TCCR0A |= (1 << COM0A1); // Non inverting mode
+
+    OCR0A = 0xFF; // Set TOP to 0xFF
+
+    TCCR0B |= (1 << CS01) | (1 << CS00); // Init prescaler 64
+
+    // 16 000 000 / (64 * 256) = 976.5625 ~ 977. PWM frequency is 977.
+
+
+}
+

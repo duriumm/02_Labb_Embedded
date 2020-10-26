@@ -34,15 +34,26 @@ ISR(TIMER0_COMPA_vect){
 
 int main (void) {
 
-  init_led(PB1);          // Init led as output
+  //init_led(PB1);          // Init led as output
   //sei();                // For this deluppgift we wont use sei();
 
-  timer0_init();          // Init Timer0, see timer.c for more comments and calculation.
+  //timer0_init();          // Init Timer0, see timer.c for more comments and calculation.
   
+  init_pwm_6();             // Init led on pwm 6 (connected with pin 9 on shield hehe)
+  pwm_timer0_init();        // Init fast pwm mode 
   while(1){
+    /* 
+    DELUPPGIFT 2 
+    */
+    if(OCR0A >= 100){       // Here we clearly see difference in LED strength as  
+                            // it increases towards 100 and then goes to 0
+      OCR0A = 0;
+    }
+    OCR0A++;
+    _delay_ms(100);
 
-
-    /* Here is flashing of led with 100ms in while loop without using sei(); */
+    /* DELUPPGIFT 1 
+    Here is flashing of led with 100ms in while loop without using sei(); 
 
     if (TIFR0 & (1 << OCF0A)){ // If TIFR0 register has an 1 in index 1 (OCF0A) we enter.
 		
@@ -56,6 +67,7 @@ int main (void) {
                              // here we set an 1 to OFC0A (bit 1) index in TIFR0 registry. 
                              // This resets the flag
 		}
+    */
   }
   return 0;
 }
