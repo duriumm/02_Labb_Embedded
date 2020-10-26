@@ -1,22 +1,27 @@
 #include "led.h"
 #include <avr/io.h>
 #include "serial.h"
-//#include "stateHandler.h"
 
-void init_led(int indexInRegistry){         // Init led as "output" 
-
-    DDRB |= (1 << indexInRegistry);     // Set a 1 to index PB1(second index) in the DDRB registry and thereby configuring the pin as output
+/* Init led as "output" */
+void init_led(int indexInRegistry){         
+    /*  Set a 1 to index PB1(second index) in the DDRB registry and thereby configuring the pin as output */
+    DDRB |= (1 << indexInRegistry);
 }
 
-void activate_led(int indexInRegistry){     // Turn the led ON
-    PORTB |= (1 << indexInRegistry);    // We set the second bit(PB1) in PORTB registry to 1 if the second bit(PB1) ALREADY is 1 or 0
+/* Function to activate LED */
+void activate_led(int indexInRegistry){ 
+    /*  We set the second bit(PB1) in PORTB registry to 1 if the second bit(PB1) ALREADY is 1 or 0 */
+    PORTB |= (1 << indexInRegistry);   
 }
 
-void deactivate_led(int indexInRegistry){   // Turn the led OFF
-    PORTB &= ~(1 << indexInRegistry);   // We set the second bit (PB1) in PORTB registry to ~1(inverted 1 that becomes 0) IF the second bit(PB1) ALREADY is 1
+/* Function to deactivate LED */
+void deactivate_led(int indexInRegistry){   
+    /* We set the second bit (PB1) in PORTB registry to ~1(inverted 1 that becomes 0) IF the second bit(PB1) ALREADY is 1 */
+    PORTB &= ~(1 << indexInRegistry);   
 }
 
-void init_pwm_6(){                          // Initialize pwm on arduino pin 6 
+/* Initialize pwm on arduino pin 6 as output */
+void init_pwm_6(){                          
     DDRD |= (1 << PD6);
 }
 

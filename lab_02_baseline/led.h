@@ -1,6 +1,5 @@
 #ifndef LED_H_
 #define LED_H_
-//#include "stateHandler.h"
 
 void init_led(int indexInRegistry);
 
